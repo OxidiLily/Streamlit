@@ -1,4 +1,3 @@
-from turtle import window_height
 import streamlit as st
 from PIL import Image
 import streamlit.components.v1 as components

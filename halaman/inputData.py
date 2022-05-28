@@ -1,8 +1,5 @@
-from turtle import width
-from matplotlib import pyplot as plt
 import pandas as pd
 from sklearn.datasets import load_diabetes
-from sklearn.decomposition import PCA
 from sklearn.metrics import accuracy_score, confusion_matrix
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
@@ -10,7 +7,6 @@ from sklearn.preprocessing import  StandardScaler
 import streamlit as st
 import mitosheet
 import plotly.express as px
-import streamlit.components.v1 as components
 
 
 

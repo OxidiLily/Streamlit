@@ -1,8 +1,6 @@
 import streamlit as st
-import numpy as np
 import pandas as pd
 from sklearn import datasets
-import plotly.figure_factory as ff
 
 def app():
     st.write("Berikut beberapa contoh `Dataset`.")

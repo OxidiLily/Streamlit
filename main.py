@@ -1,5 +1,3 @@
-from email.policy import default
-from msilib.schema import Icon
 import streamlit as st
 from multipage import MultiApp
 from halaman import home, data, inputData # import your app modules here
