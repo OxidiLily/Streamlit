@@ -14,6 +14,10 @@ hidden_menu = """
 footer {
     visibility : hidden;
     }
+
+div.stAlert{
+  text-align: center;
+}
 </style>
 """
 app = MultiApp()

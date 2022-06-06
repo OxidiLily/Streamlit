@@ -7,6 +7,7 @@ from sklearn.preprocessing import  StandardScaler
 import streamlit as st
 import mitosheet
 import plotly.express as px
+import streamlit.components.v1 as components
 
 
 
@@ -64,7 +65,6 @@ def app():
                         
             st.subheader('Hasil Proses Dataset')
             # Imported healthcare-dataset-stroke-data.csv
-            import pandas as pd
             healthcare_dataset_stroke_data = pd.read_csv(r'healthcare-dataset-stroke-data.csv')
             
             # Filtered bmi
@@ -93,7 +93,7 @@ def app():
             st.write(f'Akurasi = ',acc)
             
             st.subheader('Graph ')
-            st.write('Arahkan cursor ke kebagian pojok kanan atas pada hasil Graph untuk melihat lebih detail')
+            st.write('Arahkan cursor ke kebagian pojok kanan atas atau ke area Graph pada hasil Graph untuk melihat lebih detail')
             
             # Filter the dataframe so that it does not crash the browser
             dataset_stroke_data_filtered = healthcare_dataset_stroke_data.head(1000)
@@ -131,9 +131,10 @@ def app():
             # plt.colorbar()
             # st.pyplot(fig)
 
-    st.sidebar.header('Welcome')
+    st.sidebar.header('WELCOME')
+    
+    st.sidebar.warning('PERHATIAN')
     st.sidebar.write(""" 
-    #### Perhatian 
     Sebelum memasukkan data mohon untuk [Download file CSV disini](https://drive.google.com/drive/folders/1pjunmVTvKixg7yq7H5ArCY8VitVv1pSF?usp=sharing)""")
 
     st.sidebar.subheader('Hanya bisa memproses file CSV yang terdapat pada link di atas')
