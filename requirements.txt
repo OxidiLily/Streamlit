@@ -6,4 +6,8 @@ typing_extensions==4.2.0
 pip==22.1.1
 scikit-learn==1.1.1
 mitosheet==0.1.426
+<<<<<<< HEAD
 streamlit-option-menu==0.3.2
+=======
+streamlit-option-menu==0.3.2
+>>>>>>> fb45ade199588a67812b2808f55951f6ae11d0a4
