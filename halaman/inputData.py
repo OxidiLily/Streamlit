@@ -83,7 +83,8 @@ def app():
             sc = StandardScaler()
             x_train = sc.fit_transform(x_train)
             x_test = sc.transform(x_test)
-
+            
+            #Klasifikasi KNN
             classifier = KNeighborsClassifier(n_neighbors = params, metric = metric, p = p)
             classifier.fit(x_train,y_train)
             y_pred = classifier.predict(x_test)
