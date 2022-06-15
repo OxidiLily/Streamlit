@@ -75,7 +75,8 @@ def app():
                     # Filtered avg_glucose_level
                 healthcare_dataset_stroke_data = healthcare_dataset_stroke_data[healthcare_dataset_stroke_data['avg_glucose_level'].notnull()]
                 st.write(healthcare_dataset_stroke_data)
-
+                
+                #Memilih Data yang digunakan
                 a = healthcare_dataset_stroke_data.iloc[:,[2,8,9]]
                 b = healthcare_dataset_stroke_data.iloc[:,-1]
                 st.subheader('Dataset yang digunakan')
