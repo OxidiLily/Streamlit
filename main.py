@@ -30,7 +30,7 @@ with col1:
 with col2:
     st.write('')
 with col3:
-    st.write(x.strftime("%I"),' : ',x.strftime("%M"),x.strftime("%p"),use_column_width=True)
+    st.write('')
 
     
 selected = option_menu(
