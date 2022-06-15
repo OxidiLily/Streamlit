@@ -124,7 +124,7 @@ def app():
             else:
                 st.error('Data tidak sesuai')
         else:
-            st.write('Pastikan anda telah mendownload file CSV yang diinginkan')
+            st.write('Pastikan anda telah memasukkan data yang benar')
         
             
             # pca = PCA(2)
