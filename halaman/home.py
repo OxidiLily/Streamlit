@@ -127,15 +127,6 @@ def app():
         """,height=300)
     
     
-    image = Image.open('gambar_udinus.jpg')
-    col1, col2, col3 = st.columns([0.2, 5, 0.2])
-    with col1:
-      st.write(' ')
-
-    with col2:
-        st.image(image, use_column_width=True,caption='Universitas Dian Nuswantoro')
-
-    with col3:
-      st.write(' ')
+    
     
     
