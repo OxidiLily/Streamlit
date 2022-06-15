@@ -64,7 +64,6 @@ def ENKRIPSI_HillC(msg,key):
     # if
         
     # if
-
     encryp_text = ""
     itr_count = int(len(msg)/2)
     if len_chk == 0:

@@ -45,7 +45,6 @@ def app():
     </body>
   """, height=600)
 
-
     # bootstrap 4 collapse example
     components.html(
        """

@@ -105,21 +105,6 @@ def app():
     #             st.header('Aplikasi ini hanya bisa memproses `File CSV` yang ada pada link.') 
     #             st.warning('PERHATIAN')
                                
-                # col1, col2, col3 = st.columns([1.5, 5, 1.5])
-                # with col1:
-                #     st.write(' ')
-
-                # with col2:
-                #     st.header('Mohon untuk download `file CSV` terlebih dahulu')
-                # with col3:
-                #     st.write(' ')
-            
-    
-    # def isi():
-    #     app = MultiApp()
-    #     app.add_app("Dataset",inputData.app)
-    #     app.run() 
-    # awal()
 
         
     
