@@ -1,6 +1,7 @@
+import datetime
 import streamlit as st
 from multipage import MultiApp
-from halaman import home, data, inputData # import your app modules here
+from halaman import halaman_awal, home, data # import your app modules here
 from streamlit_option_menu import option_menu
 from Kriptografi import Kriptografi
 
@@ -8,9 +9,7 @@ from Kriptografi import Kriptografi
 st.set_page_config(page_title='OxidiLily',layout='wide')
 hidden_menu = """
 <style>
-#MainMenu{
-    visibility : hidden;
-    }
+
 footer {
     visibility : hidden;
     }
@@ -24,6 +23,16 @@ app = MultiApp()
 st.markdown(hidden_menu,unsafe_allow_html=True)
 
 
+col1, col2, col3= st.columns([1, 5, 0.5])
+x = datetime.datetime.now()
+with col1:
+    st.write(x.strftime("%d"),x.strftime("%B"),x.strftime("%Y"),use_column_width=True)
+with col2:
+    st.write('')
+with col3:
+    st.write(x.strftime("%I"),' : ',x.strftime("%M"),x.strftime("%p"),use_column_width=True)
+
+    
 selected = option_menu(
         menu_title =None,
         options = ['Home','Input Data', 'Dataset', 'Kriptografi'],
@@ -37,7 +46,7 @@ if selected == 'Home':
     app.add_app("Home", home.app)
    
 if selected == 'Input Data':
-    app.add_app("Input Data", inputData.app)
+    app.add_app("Welcome",halaman_awal.app)
 
 if selected == 'Dataset':
     app.add_app("Data", data.app)  

@@ -59,67 +59,74 @@ def app():
         rs = st.number_input('Masukkan angka random state max 10',min_value=0,max_value=10)
         
         if st.button('Tekan Untuk Proses Dataset'):
-            
-            # Menggunakan MITO
-            mitosheet.sheet()
-                        
-            st.subheader('Hasil Proses Dataset')
-            # Imported healthcare-dataset-stroke-data.csv
-            healthcare_dataset_stroke_data = pd.read_csv(r'healthcare-dataset-stroke-data.csv')
-            
-            # Filtered bmi
-            healthcare_dataset_stroke_data = healthcare_dataset_stroke_data[healthcare_dataset_stroke_data['bmi'].notnull()]
+            a = uploaded_file.name
+            if a == 'healthcare-dataset-stroke-data.csv':
+                # Menggunakan MITO
+                mitosheet.sheet()
+                st.subheader('Hasil Proses Dataset')
+                
+                
+                    # Imported healthcare-dataset-stroke-data.csv
+                healthcare_dataset_stroke_data = pd.read_csv(r'{}'.format(a))
+                    
+                    # Filtered bmi
+                healthcare_dataset_stroke_data = healthcare_dataset_stroke_data[healthcare_dataset_stroke_data['bmi'].notnull()]
 
-            # Filtered avg_glucose_level
-            healthcare_dataset_stroke_data = healthcare_dataset_stroke_data[healthcare_dataset_stroke_data['avg_glucose_level'].notnull()]
-            st.write(healthcare_dataset_stroke_data)
+                    # Filtered avg_glucose_level
+                healthcare_dataset_stroke_data = healthcare_dataset_stroke_data[healthcare_dataset_stroke_data['avg_glucose_level'].notnull()]
+                st.write(healthcare_dataset_stroke_data)
 
-            a = healthcare_dataset_stroke_data.iloc[:,[2,8,9]]
-            b = healthcare_dataset_stroke_data.iloc[:,-1]
-            st.subheader('Dataset yang digunakan')
-            st.write(a)
+                a = healthcare_dataset_stroke_data.iloc[:,[2,8,9]]
+                b = healthcare_dataset_stroke_data.iloc[:,-1]
+                st.subheader('Dataset yang digunakan')
+                st.write(a)
 
-            x_train, x_test, y_train, y_test = train_test_split(a, b, test_size =ts, random_state = rs)
-            sc = StandardScaler()
-            x_train = sc.fit_transform(x_train)
-            x_test = sc.transform(x_test)
+                x_train, x_test, y_train, y_test = train_test_split(a, b, test_size =ts, random_state = rs)
+                sc = StandardScaler()
+                x_train = sc.fit_transform(x_train)
+                x_test = sc.transform(x_test)
+                    
+                    #Klasifikasi KNN
+                classifier = KNeighborsClassifier(n_neighbors = params, metric = metric, p = p)
+                classifier.fit(x_train,y_train)
+                y_pred = classifier.predict(x_test)
 
-            classifier = KNeighborsClassifier(n_neighbors = params, metric = metric, p = p)
-            classifier.fit(x_train,y_train)
-            y_pred = classifier.predict(x_test)
-            cm = confusion_matrix(y_test, y_pred)
+                acc = accuracy_score(y_test,y_pred)
+                st.write(f'Akurasi = ',acc)
+                    
+                st.subheader('Graph ')
+                st.write('Arahkan cursor ke kebagian pojok kanan atas atau ke area Graph pada hasil Graph untuk melihat lebih detail')
+                    
+                    # Filter the dataframe so that it does not crash the browser
+                dataset_stroke_data_filtered = healthcare_dataset_stroke_data.head(1000)
 
-            acc = accuracy_score(y_test,y_pred)
-            st.write(f'Akurasi = ',acc)
-            
-            st.subheader('Graph ')
-            st.write('Arahkan cursor ke kebagian pojok kanan atas atau ke area Graph pada hasil Graph untuk melihat lebih detail')
-            
-            # Filter the dataframe so that it does not crash the browser
-            dataset_stroke_data_filtered = healthcare_dataset_stroke_data.head(1000)
+                    # Construct the graph and style it. Further customize your graph by editing this code.
+                    # See Plotly Documentation for help: https://plotly.com/python/plotly-express/
+                fig = px.histogram(dataset_stroke_data_filtered, x=['age', 'avg_glucose_level', 'bmi'], y='stroke')
+                fig.update_layout(
+                    title='age, avg_glucose_level, bmi, stroke (first 1000 rows) histogram', 
+                    xaxis = dict(
+                        rangeslider = dict(
+                            visible=True, 
+                            thickness=0.05
+                            )
+                        ), 
+                    yaxis = dict(
 
-            # Construct the graph and style it. Further customize your graph by editing this code.
-            # See Plotly Documentation for help: https://plotly.com/python/plotly-express/
-            fig = px.histogram(dataset_stroke_data_filtered, x=['age', 'avg_glucose_level', 'bmi'], y='stroke')
-            fig.update_layout(
-                title='age, avg_glucose_level, bmi, stroke (first 1000 rows) histogram', 
-                xaxis = dict(
-                    rangeslider = dict(
-                        visible=True, 
-                        thickness=0.05
+                        ), 
+                    barmode='group', 
+                    paper_bgcolor='#FFFFFF', 
+                    showlegend=True
                     )
-                ), 
-                yaxis = dict(
-
-                ), 
-                barmode='group', 
-                paper_bgcolor='#FFFFFF', 
-                showlegend=True
-            )
+                    
+                fig.show(renderer="iframe") 
+                st.write(fig)
+            else:
+                st.error('Data tidak sesuai')
+        else:
+            st.write('Pastikan anda telah mendownload file CSV yang diinginkan')
+        
             
-            fig.show(renderer="iframe")
-            
-            st.write(fig)
             # pca = PCA(2)
             # x_projected = pca.fit_transform(a)
             # x1 = x_projected[:,0]
@@ -130,20 +137,14 @@ def app():
             # plt.ylabel('Principal Component 2')
             # plt.colorbar()
             # st.pyplot(fig)
-
-    st.sidebar.header('WELCOME')
+        
     
-    st.sidebar.warning('PERHATIAN')
-    st.sidebar.write(""" 
-    Sebelum memasukkan data mohon untuk [Download file CSV disini](https://drive.google.com/drive/folders/1pjunmVTvKixg7yq7H5ArCY8VitVv1pSF?usp=sharing)""")
-
-    st.sidebar.subheader('Hanya bisa memproses file CSV yang terdapat pada link di atas')
     st.subheader('Dataset')
 
     #---------------------------------#
     # Sidebar - Collects user input features into dataframe
     
-    uploaded_file = st.file_uploader("Upload your input CSV file", type=["csv"])
+    uploaded_file = st.file_uploader("Upload CSV file", type=["csv"])
     if uploaded_file is not None:
         df= pd.read_csv(uploaded_file)
         st.markdown('**Dataset**')
