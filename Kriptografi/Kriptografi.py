@@ -516,21 +516,27 @@ def app():
         ('Enkripsi', 'Dekripsi'))
         if selected == 'Enkripsi':
             st.write('# Enkripsi')
-            msg = st.text_input('', placeholder='Masukkan Text').upper()
-            key = st.text_input('', placeholder='Enter 4 letter Key String ',max_chars=4).upper()
+            col1, col2 = st.columns(2)
+            with col1:
+                msg = st.text_area('', placeholder='Masukkan Text').upper()
+            with col2:
+                key = st.text_input('', placeholder='Enter 4 letter Key String ',max_chars=4).upper()
             if st.button('Enkripsi'):
                 if len(key) % 4 == 0:
                     ENKRIPSI_HillC(msg,key)
                 elif len(key) % 4 != 0:
                     st.error('key harus 4 karakter')
-                    
+
             else:
                 st.warning('Silahkan input Text dan Key')
 
         if selected == 'Dekripsi':
             st.write('# Dekripsi')
-            msg = st.text_input('', placeholder='Masukkan Text').upper()
-            key = st.text_input('', placeholder='Enter 4 letter Key String ',max_chars=4).upper()
+            col1, col2 = st.columns(2)
+            with col1:
+                msg = st.text_area('', placeholder='Masukkan Text').upper()
+            with col2:
+                key = st.text_input('', placeholder='Enter 4 letter Key String ',max_chars=4).upper()
             if st.button('Dekripsi'):
                 if len(key) % 4 == 0:
                     DEKRIPSI_HillC(msg,key)
@@ -547,8 +553,11 @@ def app():
         ('Enkripsi & Dekripsi', 'Dekripsi'), disabled = True)
         if selected == 'Enkripsi & Dekripsi':
             st.write('# Enkripsi & Dekripsi')
-            msg = st.text_input('', placeholder='Masukkan Text').upper()
-            key = st.text_input('', placeholder='Enter 4 letter Key String ',max_chars=4).upper()
+            col1, col2 = st.columns(2)
+            with col1:
+                msg = st.text_area('', placeholder='Masukkan Text').upper()
+            with col2:
+                key = st.text_input('', placeholder='Enter 4 letter Key String ',max_chars=4).upper()
             if st.button('Proses'):
                 if len(key) % 4 == 0:
                     superEnkripsi(msg,key)
