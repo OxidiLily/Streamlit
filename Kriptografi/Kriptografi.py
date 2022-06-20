@@ -510,7 +510,7 @@ def app():
             st.write('# Enkripsi')
             msg = st.text_input('', placeholder='Masukkan Text').upper()
             key = st.text_input('', placeholder='Enter 4 letter Key String ',max_chars=4).upper()
-            if key == 4:
+            if key == key:
                 if st.button('Enkripsi'):
                     ENKRIPSI_HillC(msg,key)
                 else:
@@ -521,7 +521,7 @@ def app():
             st.write('# Dekripsi')
             msg = st.text_input('', placeholder='Masukkan Text').upper()
             key = st.text_input('', placeholder='Enter 4 letter Key String ',max_chars=4).upper()
-            if key == 4:
+            if key == key:
                 if st.button('Dekripsi'):
                     DEKRIPSI_HillC(msg,key)
                 else:
@@ -535,7 +535,7 @@ def app():
             st.write('# Enkripsi & Dekripsi')
             msg = st.text_input('', placeholder='Masukkan Text').upper()
             key = st.text_input('', placeholder='Enter 4 letter Key String ',max_chars=4).upper()
-            if key == 4:
+            if key == key:
                 if st.button('Proses'):
                     superEnkripsi(msg,key)
                 else:
