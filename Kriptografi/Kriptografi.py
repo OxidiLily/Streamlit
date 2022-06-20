@@ -198,7 +198,10 @@ def DEKRIPSI_HillC(msg,key):
 
 #Super Enkripsi
 def superEnkripsi(msg,key):
+
+    #enkripsi hill cipher
     msg = msg.replace(" ", "")
+    pl = msg
 
     # jika msg tersebut merupakan angka ganjil, maka menambahkan 0 di akhir
     len_chk = 0
@@ -275,6 +278,7 @@ def superEnkripsi(msg,key):
         # for
     # if else
    
+   #encrypt pada Transpossion cipher
     def trans_encrypt(msg):
         hasil = ""
 
@@ -310,6 +314,8 @@ def superEnkripsi(msg,key):
             k_indx += 1
 
         return hasil
+
+    #dekrip pada transpossion cipher
     def trans_decrypt(hasil):
         msg = ""
         
@@ -362,6 +368,7 @@ def superEnkripsi(msg,key):
 
         return msg
     
+    #dekripsi hill cipher
     msg = encryp_text .replace(" ", "")
 
     # jika msg tersebut merupakan angka ganjil, maka menambahkan 0 di akhir
@@ -462,7 +469,7 @@ def superEnkripsi(msg,key):
     with col1:
         expander = st.expander("Detail Hasil Enkripsi")
         expander.write('Plaintext :')
-        expander.subheader(decryp_text)
+        expander.subheader(pl)
         expander.write('Key :')
         expander.subheader(key)
         expander.subheader('Proses Enkripsi `Super Enkripsi`')
@@ -503,6 +510,7 @@ def app():
     algo = st.selectbox( 'Pilih Algoritma',
     ('Hill Chiper', 'Super Enkripsi'))
 
+#Hill
     if algo == 'Hill Chiper':
         selected = st.selectbox( 'Pilih Proses',
         ('Enkripsi', 'Dekripsi'))
@@ -510,24 +518,30 @@ def app():
             st.write('# Enkripsi')
             msg = st.text_input('', placeholder='Masukkan Text').upper()
             key = st.text_input('', placeholder='Enter 4 letter Key String ',max_chars=4).upper()
-            if key == key:
-                if st.button('Enkripsi'):
+            if st.button('Enkripsi'):
+                if len(key) % 4 == 0:
                     ENKRIPSI_HillC(msg,key)
-                else:
-                    st.subheader('Silahkan input Text dan Key')
+                elif len(key) % 4 != 0:
+                    st.error('key harus 4 karakter')
+                    
             else:
-                st.subheader('Key harus 4 huruf')
+                st.warning('Silahkan input Text dan Key')
+
         if selected == 'Dekripsi':
             st.write('# Dekripsi')
             msg = st.text_input('', placeholder='Masukkan Text').upper()
             key = st.text_input('', placeholder='Enter 4 letter Key String ',max_chars=4).upper()
-            if key == key:
-                if st.button('Dekripsi'):
+            if st.button('Dekripsi'):
+                if len(key) % 4 == 0:
                     DEKRIPSI_HillC(msg,key)
-                else:
-                    st.subheader('Silahkan inputText dan Key')
+                elif len(key) % 4 != 0:
+                    st.error('key harus 4 karakter')
+                
+
             else:
-                st.subheader('Key harus 4 huruf')
+                st.warning('Silahkan inputText dan Key')
+
+#Super Enkripsi                
     if algo == 'Super Enkripsi':
         selected = st.selectbox( 'Pilih Proses',
         ('Enkripsi & Dekripsi', 'Dekripsi'), disabled = True)
@@ -535,10 +549,11 @@ def app():
             st.write('# Enkripsi & Dekripsi')
             msg = st.text_input('', placeholder='Masukkan Text').upper()
             key = st.text_input('', placeholder='Enter 4 letter Key String ',max_chars=4).upper()
-            if key == key:
-                if st.button('Proses'):
+            if st.button('Proses'):
+                if len(key) % 4 == 0:
                     superEnkripsi(msg,key)
-                else:
-                    st.subheader('Silahkan input Text dan Key')
+                elif len(key) % 4 != 0:
+                    st.error('key harus 4 karakter')
+                
             else:
-                st.subheader('Key harus 4 huruf')
+                st.warning('Silahkan input Text dan Key')
