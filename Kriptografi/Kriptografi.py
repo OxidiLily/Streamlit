@@ -510,19 +510,24 @@ def app():
             st.write('# Enkripsi')
             msg = st.text_input('', placeholder='Masukkan Text').upper()
             key = st.text_input('', placeholder='Enter 4 letter Key String ',max_chars=4).upper()
-            if st.button('Enkripsi'):
-                ENKRIPSI_HillC(msg,key)
+            if key == 4:
+                if st.button('Enkripsi'):
+                    ENKRIPSI_HillC(msg,key)
+                else:
+                    st.subheader('Silahkan input Text dan Key')
             else:
-                st.subheader('Silahkan input Text dan Key')
+                st.subheader('Key harus 4 huruf')
         if selected == 'Dekripsi':
             st.write('# Dekripsi')
             msg = st.text_input('', placeholder='Masukkan Text').upper()
             key = st.text_input('', placeholder='Enter 4 letter Key String ',max_chars=4).upper()
-            if st.button('Dekripsi'):
-                DEKRIPSI_HillC(msg,key)
+            if key == 4:
+                if st.button('Dekripsi'):
+                    DEKRIPSI_HillC(msg,key)
+                else:
+                    st.subheader('Silahkan inputText dan Key')
             else:
-                st.subheader('Silahkan inputText dan Key')
-
+                st.subheader('Key harus 4 huruf')
     if algo == 'Super Enkripsi':
         selected = st.selectbox( 'Pilih Proses',
         ('Enkripsi & Dekripsi', 'Dekripsi'), disabled = True)
@@ -530,8 +535,10 @@ def app():
             st.write('# Enkripsi & Dekripsi')
             msg = st.text_input('', placeholder='Masukkan Text').upper()
             key = st.text_input('', placeholder='Enter 4 letter Key String ',max_chars=4).upper()
-            if st.button('Proses'):
-                superEnkripsi(msg,key)
+            if key == 4:
+                if st.button('Proses'):
+                    superEnkripsi(msg,key)
+                else:
+                    st.subheader('Silahkan input Text dan Key')
             else:
-                st.subheader('Silahkan input Text dan Key')
-        
+                st.subheader('Key harus 4 huruf')
