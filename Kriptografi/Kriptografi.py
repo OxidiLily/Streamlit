@@ -81,6 +81,7 @@ def ENKRIPSI_HillC(msg,key):
             encryp_text += chr((temp2 % 26) + 65)
         # for
     # if else
+    
     st.subheader('Ciphertext :')
     st.header(encryp_text)
     expander = st.expander("Detail Hasil Enkripsi")
