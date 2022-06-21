@@ -145,8 +145,8 @@ def DEKRIPSI_HillC(msg,key):
             continue
     # for
 
-    # adjugate matrix
-    # swapping
+    # memutuskan matrix
+    # tukar
     key2d[0][0], key2d[1][1] = key2d[1][1], key2d[0][0]
 
     # changing signs pada matriks
@@ -291,23 +291,23 @@ def superEnkripsi(msg,key):
         msg_lst = list(msg)
         key_lst = sorted(list(key))
 
-        # calculate column of the matrix
+        # menghitung kolom pada matrix
         col = len(key)
         
-        # calculate maximum row of the matrix
+        # menghitung baris maximum matrix
         row = int(math.ceil(msg_len / col))
 
-        # add the padding character '_' in empty
+        # add character '_' jika kosong
         # the empty cell of the matix
         fill_null = int((row * col) - msg_len)
         msg_lst.extend('_' * fill_null)
 
-        # create Matrix and insert message and
+        # membuat Matrix and input message and
         # padding characters row-wise
         matrix = [msg_lst[i: i + col]
                 for i in range(0, len(msg_lst), col)]
 
-        # read matrix column-wise using key
+        # membaca matrix column-wise menggunakan key
         for _ in range(col):
             curr_idx = key.index(key_lst[k_indx])
             hasil += ''.join([row[curr_idx]
@@ -328,13 +328,13 @@ def superEnkripsi(msg,key):
         msg_len = float(len(hasil))
         msg_lst = list(hasil)
 
-        # calculate column of the matrix
+        # menghitung column pada matrix
         col = len(key)
         
         # calculate maximum row of the matrix
         row = int(math.ceil(msg_len / col))
 
-        # convert key into list and sort
+        # merubah key ke list and sort
         # alphabetically so we can access
         # each character by its alphabetical position.
         key_lst = sorted(list(key))
@@ -420,7 +420,7 @@ def superEnkripsi(msg,key):
             continue
     # for
 
-    # adjugate matrix
+    # memutuskan matrix
     # swapping
     key2d[0][0], key2d[1][1] = key2d[1][1], key2d[0][0]
 
